@@ -1,0 +1,330 @@
+[
+    {
+        "id": "c097c458491b9e5c",
+        "type": "tab",
+        "label": "Flow 3",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "e6e93a7e1239129a",
+        "type": "http response",
+        "z": "c097c458491b9e5c",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 2090,
+        "y": 2020,
+        "wires": []
+    },
+    {
+        "id": "1515ef7f8241569d",
+        "type": "http in",
+        "z": "c097c458491b9e5c",
+        "name": "",
+        "url": "/post",
+        "method": "post",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 1390,
+        "y": 2020,
+        "wires": [
+            [
+                "349da1907089fcfc"
+            ]
+        ]
+    },
+    {
+        "id": "349da1907089fcfc",
+        "type": "cloudantplus out",
+        "z": "c097c458491b9e5c",
+        "name": "",
+        "cloudant": "f6db913a87cefa0d",
+        "database": "fruver",
+        "service": "_ext_",
+        "payonly": true,
+        "operation": "insert",
+        "x": 1690,
+        "y": 2020,
+        "wires": [
+            [
+                "e6e93a7e1239129a"
+            ]
+        ]
+    },
+    {
+        "id": "99be15efe9d34cf1",
+        "type": "http in",
+        "z": "c097c458491b9e5c",
+        "name": "",
+        "url": "/get",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 1368.125,
+        "y": 2146.25,
+        "wires": [
+            [
+                "989208dacf724db5"
+            ]
+        ]
+    },
+    {
+        "id": "222ac366e9a8ed60",
+        "type": "http response",
+        "z": "c097c458491b9e5c",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 2090,
+        "y": 2140,
+        "wires": []
+    },
+    {
+        "id": "989208dacf724db5",
+        "type": "cloudantplus in",
+        "z": "c097c458491b9e5c",
+        "name": "",
+        "cloudant": "f6db913a87cefa0d",
+        "database": "fruver",
+        "service": "_ext_",
+        "search": "_all_",
+        "design": "",
+        "index": "",
+        "x": 1670,
+        "y": 2140,
+        "wires": [
+            [
+                "222ac366e9a8ed60"
+            ]
+        ]
+    },
+    {
+        "id": "3148829aaba525f0",
+        "type": "http in",
+        "z": "c097c458491b9e5c",
+        "name": "",
+        "url": "/delete",
+        "method": "delete",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 1380,
+        "y": 2260,
+        "wires": [
+            [
+                "6566a2f61bee73f0"
+            ]
+        ]
+    },
+    {
+        "id": "306abbaa64f3fbb0",
+        "type": "http response",
+        "z": "c097c458491b9e5c",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 2090,
+        "y": 2260,
+        "wires": []
+    },
+    {
+        "id": "6566a2f61bee73f0",
+        "type": "cloudantplus out",
+        "z": "c097c458491b9e5c",
+        "name": "",
+        "cloudant": "f6db913a87cefa0d",
+        "database": "fruver",
+        "service": "_ext_",
+        "payonly": true,
+        "operation": "delete",
+        "x": 1650,
+        "y": 2260,
+        "wires": [
+            [
+                "306abbaa64f3fbb0"
+            ]
+        ]
+    },
+    {
+        "id": "46d02bc094e55ba2",
+        "type": "inject",
+        "z": "c097c458491b9e5c",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "flamengo flamengo",
+        "payloadType": "str",
+        "x": 190,
+        "y": 140,
+        "wires": [
+            [
+                "a42e228387936bbe"
+            ]
+        ]
+    },
+    {
+        "id": "a42e228387936bbe",
+        "type": "watson-text-to-speech",
+        "z": "c097c458491b9e5c",
+        "name": "",
+        "lang": "pt-BR",
+        "langhidden": "pt-BR",
+        "langcustom": "NoCustomisationSetting",
+        "langcustomhidden": "",
+        "voice": "pt-BR_IsabelaV3Voice",
+        "voicehidden": "",
+        "format": "audio/wav",
+        "password": "",
+        "apikey": "Tx3sH2ouZxPhYz4VpSBNM3m2Vw6xmvMPtW4u8Xm11fG6",
+        "payload-response": false,
+        "service-endpoint": "https://api.us-south.text-to-speech.watson.cloud.ibm.com/instances/261f7302-0a61-4c69-9fa2-620509de768f",
+        "x": 440,
+        "y": 140,
+        "wires": [
+            [
+                "e1cc101379b86554"
+            ]
+        ]
+    },
+    {
+        "id": "e1cc101379b86554",
+        "type": "play audio",
+        "z": "c097c458491b9e5c",
+        "name": "",
+        "voice": "0",
+        "x": 690,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "a4e62501e47468f3",
+        "type": "watson-speech-to-text",
+        "z": "c097c458491b9e5c",
+        "name": "",
+        "alternatives": 1,
+        "speakerlabels": true,
+        "smartformatting": false,
+        "lang": "pt-BR",
+        "langhidden": "pt-BR",
+        "langcustom": "NoCustomisationSetting",
+        "langcustomhidden": "",
+        "custom-weight": "0.5",
+        "band": "BroadbandModel",
+        "bandhidden": "BroadbandModel",
+        "keywords": "",
+        "keywords-threshold": "0.5",
+        "word-confidence": false,
+        "password": "",
+        "apikey": "gTWGsq3e7C0DIA1thbR4QziyhhPQyRAft7YJV_wyrSJU",
+        "payload-response": false,
+        "streaming-mode": false,
+        "streaming-mute": true,
+        "auto-connect": false,
+        "discard-listening": false,
+        "disable-precheck": false,
+        "service-endpoint": "https://api.us-south.speech-to-text.watson.cloud.ibm.com/instances/03be4efc-fdfd-46dc-9975-32573cfd51c8",
+        "x": 380,
+        "y": 260,
+        "wires": [
+            [
+                "b75849785ad90b10",
+                "8ab2da33e41d7fd3"
+            ]
+        ]
+    },
+    {
+        "id": "b75849785ad90b10",
+        "type": "debug",
+        "z": "c097c458491b9e5c",
+        "name": "debug 15",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "transcription",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 640,
+        "y": 420,
+        "wires": []
+    },
+    {
+        "id": "9d8fb66d1415f6c7",
+        "type": "microphone",
+        "z": "c097c458491b9e5c",
+        "name": "",
+        "x": 190,
+        "y": 240,
+        "wires": [
+            [
+                "a4e62501e47468f3"
+            ]
+        ]
+    },
+    {
+        "id": "8ab2da33e41d7fd3",
+        "type": "cloudantplus in",
+        "z": "c097c458491b9e5c",
+        "name": "",
+        "cloudant": "f6db913a87cefa0d",
+        "database": "joastradutor",
+        "service": "_ext_",
+        "search": "_all_",
+        "design": "",
+        "index": "",
+        "x": 650,
+        "y": 280,
+        "wires": [
+            [
+                "75141bfe50e41c20"
+            ]
+        ]
+    },
+    {
+        "id": "75141bfe50e41c20",
+        "type": "http response",
+        "z": "c097c458491b9e5c",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 830,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "851af1d4b704144e",
+        "type": "http in",
+        "z": "c097c458491b9e5c",
+        "name": "",
+        "url": "",
+        "method": "post",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 390,
+        "y": 360,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "f6db913a87cefa0d",
+        "type": "cloudantplus",
+        "host": "https://apikey-v2-xqmwqcwxzw39a34csad7x4mhe9k08798uohg4ihq9o7:40f8a5b2dea8e8dd04aee009c2247092@bbd3c0ee-d0c8-455b-bbd3-8d6d996c2c0a-bluemix.cloudantnosqldb.appdomain.cloud",
+        "name": "joas",
+        "useapikey": true
+    }
+]

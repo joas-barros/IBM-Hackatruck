@@ -1,0 +1,110 @@
+[
+    {
+        "id": "c097c458491b9e5c",
+        "type": "tab",
+        "label": "Flow 3",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "e9d53669cc9a1374",
+        "type": "http in",
+        "z": "c097c458491b9e5c",
+        "name": "",
+        "url": "/postarDados",
+        "method": "post",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 250,
+        "y": 160,
+        "wires": [
+            [
+                "e48ac1d43974c4ea"
+            ]
+        ]
+    },
+    {
+        "id": "4fef3df9f3a2f90f",
+        "type": "http response",
+        "z": "c097c458491b9e5c",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 690,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "b1d3642921cfb8e3",
+        "type": "cloudantplus in",
+        "z": "c097c458491b9e5c",
+        "name": "",
+        "cloudant": "f6db913a87cefa0d",
+        "database": "faculdadedejoas",
+        "service": "_ext_",
+        "search": "_all_",
+        "design": "",
+        "index": "",
+        "x": 480,
+        "y": 340,
+        "wires": [
+            [
+                "70346f7c737b5d13"
+            ]
+        ]
+    },
+    {
+        "id": "426006bc004f2743",
+        "type": "http in",
+        "z": "c097c458491b9e5c",
+        "name": "",
+        "url": "/lerDados",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 240,
+        "y": 320,
+        "wires": [
+            [
+                "b1d3642921cfb8e3"
+            ]
+        ]
+    },
+    {
+        "id": "e48ac1d43974c4ea",
+        "type": "cloudantplus out",
+        "z": "c097c458491b9e5c",
+        "name": "",
+        "cloudant": "f6db913a87cefa0d",
+        "database": "faculdadedejoas",
+        "service": "_ext_",
+        "payonly": true,
+        "operation": "insert",
+        "x": 480,
+        "y": 140,
+        "wires": [
+            [
+                "4fef3df9f3a2f90f"
+            ]
+        ]
+    },
+    {
+        "id": "70346f7c737b5d13",
+        "type": "http response",
+        "z": "c097c458491b9e5c",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 710,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "f6db913a87cefa0d",
+        "type": "cloudantplus",
+        "host": "https://apikey-v2-xqmwqcwxzw39a34csad7x4mhe9k08798uohg4ihq9o7:40f8a5b2dea8e8dd04aee009c2247092@bbd3c0ee-d0c8-455b-bbd3-8d6d996c2c0a-bluemix.cloudantnosqldb.appdomain.cloud",
+        "name": "joas",
+        "useapikey": true
+    }
+]

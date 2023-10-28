@@ -1,0 +1,160 @@
+[
+    {
+        "id": "76d70894d85fb50b",
+        "type": "tab",
+        "label": "Flow 3",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "e464a4e185c2affa",
+        "type": "http in",
+        "z": "76d70894d85fb50b",
+        "name": "",
+        "url": "/postarDados",
+        "method": "post",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 130,
+        "y": 80,
+        "wires": [
+            [
+                "9fb98c8ccc44f21e"
+            ]
+        ]
+    },
+    {
+        "id": "61ef107ac0cafbb5",
+        "type": "http response",
+        "z": "76d70894d85fb50b",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 690,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "f5453857443ba20e",
+        "type": "cloudantplus in",
+        "z": "76d70894d85fb50b",
+        "name": "",
+        "cloudant": "f6db913a87cefa0d",
+        "database": "faculdadedejoas",
+        "service": "_ext_",
+        "search": "_all_",
+        "design": "",
+        "index": "",
+        "x": 480,
+        "y": 340,
+        "wires": [
+            [
+                "6cd9b35724d268c1"
+            ]
+        ]
+    },
+    {
+        "id": "f408e44f49cd62f6",
+        "type": "http in",
+        "z": "76d70894d85fb50b",
+        "name": "",
+        "url": "/lerDados",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 240,
+        "y": 320,
+        "wires": [
+            [
+                "f5453857443ba20e"
+            ]
+        ]
+    },
+    {
+        "id": "15d685c0c276309c",
+        "type": "cloudantplus out",
+        "z": "76d70894d85fb50b",
+        "name": "",
+        "cloudant": "f6db913a87cefa0d",
+        "database": "faculdadedejoas",
+        "service": "_ext_",
+        "payonly": true,
+        "operation": "insert",
+        "x": 480,
+        "y": 140,
+        "wires": [
+            [
+                "61ef107ac0cafbb5"
+            ]
+        ]
+    },
+    {
+        "id": "6cd9b35724d268c1",
+        "type": "http response",
+        "z": "76d70894d85fb50b",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 710,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "9fb98c8ccc44f21e",
+        "type": "switch",
+        "z": "76d70894d85fb50b",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "istype",
+                "v": "array",
+                "vt": "array"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 230,
+        "y": 160,
+        "wires": [
+            [
+                "dc967ea016a4ec78"
+            ],
+            [
+                "15d685c0c276309c"
+            ]
+        ]
+    },
+    {
+        "id": "dc967ea016a4ec78",
+        "type": "split",
+        "z": "76d70894d85fb50b",
+        "name": "",
+        "splt": "\\n",
+        "spltType": "str",
+        "arraySplt": 1,
+        "arraySpltType": "len",
+        "stream": false,
+        "addname": "",
+        "x": 330,
+        "y": 60,
+        "wires": [
+            [
+                "15d685c0c276309c"
+            ]
+        ]
+    },
+    {
+        "id": "f6db913a87cefa0d",
+        "type": "cloudantplus",
+        "host": "https://apikey-v2-xqmwqcwxzw39a34csad7x4mhe9k08798uohg4ihq9o7:40f8a5b2dea8e8dd04aee009c2247092@bbd3c0ee-d0c8-455b-bbd3-8d6d996c2c0a-bluemix.cloudantnosqldb.appdomain.cloud",
+        "name": "joas",
+        "useapikey": true
+    }
+]
